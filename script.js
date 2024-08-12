@@ -1,83 +1,110 @@
 const passkeyContainer = document.getElementById('passkey-container');
-const mainContent = document.getElementById('main-content');
 const passkeyInput = document.getElementById('passkey');
 const passkeySubmit = document.getElementById('passkey-submit');
 const errorMessage = document.getElementById('error-message');
 
-// Set the passkeys
-const userPasskey = 'apl soss';  // Your passkey
-const girlfriendPasskey = 'oranj joos';  // Girlfriend's passkey
+// Use your actual Apps Script web app URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycby8q1dKTRmu6j1_rXwJknNsYl0rfool0Jf3YaooZo5vTNMW0m_V2NA0FqxREL_UkqB1kw/exec';
+
+const userPasskey = 'apl soss';  // Your passkey (Alex)
+const girlfriendPasskey = 'oranj joos';  // Girlfriend's passkey (Logann)
+
+let currentUser = '';  // To store who is currently logged in (Alex or Logann)
 
 passkeySubmit.addEventListener('click', function () {
     const enteredPasskey = passkeyInput.value;
     if (enteredPasskey === userPasskey || enteredPasskey === girlfriendPasskey) {
-        passkeyContainer.classList.add('hidden');
-        mainContent.classList.remove('hidden');
-
-        if (enteredPasskey === userPasskey) {
-            console.log("Logged in as user.");
-            // Additional customization if needed for user account
-        } else if (enteredPasskey === girlfriendPasskey) {
-            console.log("Logged in as girlfriend.");
-            // Additional customization if needed for girlfriend's account
-        }
+        passkeyContainer.style.display = 'none';
+        currentUser = enteredPasskey === userPasskey ? 'Alex' : 'Logann';
+        createMainContent();
+        loadMessages();
     } else {
         errorMessage.innerText = 'Incorrect Passkey';
         errorMessage.style.display = 'block';
     }
 });
 
-// Message Handling
-const messageBox = document.getElementById('message-box');
-const messageInput = document.getElementById('message-input');
-const sendBtn = document.getElementById('send-btn');
+function createMainContent() {
+    const container = document.createElement('div');
+    container.classList.add('container');
+    container.style.display = 'block';
 
-// Load messages from localStorage
-let messages = JSON.parse(localStorage.getItem('messages')) || [];
+    const heading = document.createElement('h1');
+    heading.innerText = `Goodnight, ${currentUser} 💕`;
+    container.appendChild(heading);
 
-function renderMessages() {
-    messageBox.innerHTML = '';
-    messages.forEach(msg => {
-        const messageElement = document.createElement('p');
-        messageElement.innerText = msg;
-        messageBox.appendChild(messageElement);
-    });
+    const messageBox = document.createElement('div');
+    messageBox.classList.add('message-box');
+    messageBox.setAttribute('id', 'message-box');
+    container.appendChild(messageBox);
+
+    const messageInput = document.createElement('textarea');
+    messageInput.classList.add('message-input');
+    messageInput.setAttribute('id', 'message-input');
+    messageInput.setAttribute('placeholder', 'Write a message...');
+    container.appendChild(messageInput);
+
+    const sendBtn = document.createElement('button');
+    sendBtn.classList.add('send-btn');
+    sendBtn.innerText = 'Send';
+    sendBtn.addEventListener('click', sendMessage);
+    container.appendChild(sendBtn);
+
+    const clearBtn = document.createElement('button');
+    clearBtn.classList.add('clear-btn');
+    clearBtn.innerText = 'Clear Messages';
+    clearBtn.addEventListener('click', clearMessages);
+    container.appendChild(clearBtn);
+
+    document.body.appendChild(container);
 }
 
-sendBtn.addEventListener('click', function () {
-    const message = messageInput.value;
-    if (message) {
-        messages.push(message);
-        if (messages.length > 5) {
-            messages.shift();
-        }
-        localStorage.setItem('messages', JSON.stringify(messages));
-        renderMessages();
-        messageInput.value = '';
+function sendMessage() {
+    const messageInput = document.getElementById('message-input');
+    const messageText = messageInput.value;
+
+    if (messageText) {
+        fetch(scriptURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'send',
+                sender: currentUser,
+                message: messageText
+            })
+        }).then(response => response.text())
+          .then(result => {
+              messageInput.value = '';
+              loadMessages(); // Reload messages after sending
+          })
+          .catch(error => console.error('Error:', error));
     }
-});
+}
 
-// Render messages on page load
-renderMessages();
+function loadMessages() {
+    fetch(scriptURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'get' })
+    }).then(response => response.json())
+      .then(data => {
+          const messageBox = document.getElementById('message-box');
+          messageBox.innerHTML = ''; // Clear previous messages
 
-// Profile Picture Handling
-const profilePic = document.getElementById('profile-pic');
-const uploadPic = document.getElementById('upload-pic');
+          data.forEach(message => {
+              const messageElement = document.createElement('p');
+              messageElement.innerText = `${message.sender}: ${message.message}`;
+              messageElement.style.fontFamily = 'Cinzel Decorative, cursive';
+              messageElement.style.color = '#fdf5e6';
+              messageBox.appendChild(messageElement);
+          });
 
-uploadPic.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            profilePic.src = e.target.result;
-            localStorage.setItem('profilePic', e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-});
+          messageBox.scrollTop = messageBox.scrollHeight; // Scroll to the bottom
+      })
+      .catch(error => console.error('Error:', error));
+}
 
-// Load profile picture from localStorage
-const savedProfilePic = localStorage.getItem('profilePic');
-if (savedProfilePic) {
-    profilePic.src = savedProfilePic;
+function clearMessages() {
+    // Clearing messages from Google Sheets is not supported in this implementation.
+    alert('Clear functionality not supported.');
 }
