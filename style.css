@@ -1,155 +1,109 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    overflow: hidden;
-}
-
-.hidden {
-    display: none;
-}
-
-.container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-}
-
-.message-box {
-    border: 1px solid white;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 1em 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    font-size: 1.2em;
-    max-height: 150px;
-    overflow-y: auto;
-}
-
-.message-input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 1em;
-    font-size: 1em;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-.send-btn {
-    padding: 15px;
-    background-color: #ff69b4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    width: 100%;
-}
-
-.send-btn:hover {
-    background-color: #ff1493;
-}
-
-#profile-pic-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-#profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-#upload-pic {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://source.unsplash.com/1600x900/?fantasy-forest') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Papyrus', sans-serif;
+  color: white;
 }
 
 #passkey-container {
-    text-align: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-#passkey {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    width: 80%;
-    font-size: 1.2em;
-    margin-bottom: 10px;
+h2 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2em;
+  margin-bottom: 15px;
 }
 
-#passkey-submit {
-    padding: 10px 20px;
-    background-color: #ff69b4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #8b4513;
+  background-color: #faf0e6;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a0522d;
 }
 
 #error-message {
-    color: red;
-    margin-top: 10px;
-    display: none;
+  color: red;
+  margin-top: 10px;
 }
 
-/* Floating stars background */
-body:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://source.unsplash.com/1600x900/?night-sky') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -1;
-    opacity: 0.8;
+.container {
+  display: none;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-body:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/black-twill.png');
-    animation: floatStars 50s linear infinite;
+h1 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2.5em;
+  margin-bottom: 15px;
 }
 
-@keyframes floatStars {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-1000px);
-    }
+.message-box {
+  border: 2px solid #8b4513;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 1.2em;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  text-align: left;
+  color: #fdf5e6;
+}
+
+.message-input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 2px solid #8b4513;
+  background-color: #faf0e6;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #8b4513;
+}
+
+button.send-btn, button.clear-btn {
+  padding: 10px 20px;
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button.send-btn:hover, button.clear-btn:hover {
+  background-color: #a0522d;
 }
