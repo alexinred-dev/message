@@ -4,13 +4,23 @@ const passkeyInput = document.getElementById('passkey');
 const passkeySubmit = document.getElementById('passkey-submit');
 const errorMessage = document.getElementById('error-message');
 
-const correctPasskey = '1234'; // Set your passkey here
+// Set the passkeys
+const userPasskey = 'apl soss';  // Your passkey
+const girlfriendPasskey = 'oranj joos';  // Girlfriend's passkey
 
 passkeySubmit.addEventListener('click', function () {
     const enteredPasskey = passkeyInput.value;
-    if (enteredPasskey === correctPasskey) {
+    if (enteredPasskey === userPasskey || enteredPasskey === girlfriendPasskey) {
         passkeyContainer.classList.add('hidden');
         mainContent.classList.remove('hidden');
+
+        if (enteredPasskey === userPasskey) {
+            console.log("Logged in as user.");
+            // Additional customization if needed for user account
+        } else if (enteredPasskey === girlfriendPasskey) {
+            console.log("Logged in as girlfriend.");
+            // Additional customization if needed for girlfriend's account
+        }
     } else {
         errorMessage.innerText = 'Incorrect Passkey';
         errorMessage.style.display = 'block';
