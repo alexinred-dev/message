@@ -1,109 +1,137 @@
+/* Import beautiful Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap');
+
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url('https://source.unsplash.com/1600x900/?fantasy-forest') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Papyrus', sans-serif;
-  color: white;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://source.unsplash.com/1600x900/?fantasy,night') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    overflow: hidden;
 }
 
 #passkey-container {
-  text-align: center;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 2s ease-in-out;
 }
 
 h2 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 2em;
-  margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f7d794;
+    text-shadow: 0 0 10px #000;
 }
 
 input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 2px solid #8b4513;
-  background-color: #faf0e6;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #f7d794;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: white;
+    outline: none;
+    width: 80%;
+}
+
+input::placeholder {
+    color: #f7d794;
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #8b4513;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
+    padding: 15px 30px;
+    background-color: #f7d794;
+    color: #4a4a4a;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #a0522d;
+    background-color: #e4b962;
 }
 
 #error-message {
-  color: red;
-  margin-top: 10px;
+    color: #ff6b6b;
+    margin-top: 15px;
+    font-weight: bold;
+    display: none;
 }
 
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Main content styling when revealed */
 .container {
-  display: none;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    margin-top: 20px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 h1 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 2.5em;
-  margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #f7d794;
+    text-shadow: 0 0 10px #000;
 }
 
 .message-box {
-  border: 2px solid #8b4513;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
-  font-size: 1.2em;
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 15px;
-  text-align: left;
-  color: #fdf5e6;
+    border: 2px solid #f7d794;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 1.2em;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    color: #f7d794;
+    text-align: left;
 }
 
 .message-input {
-  width: 100%;
-  padding: 15px;
-  border-radius: 5px;
-  border: 2px solid #8b4513;
-  background-color: #faf0e6;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #8b4513;
+    width: 80%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #f7d794;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: white;
+    outline: none;
 }
 
 button.send-btn, button.clear-btn {
-  padding: 10px 20px;
-  background-color: #8b4513;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 10px;
+    padding: 15px 30px;
+    background-color: #f7d794;
+    color: #4a4a4a;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 button.send-btn:hover, button.clear-btn:hover {
-  background-color: #a0522d;
+    background-color: #e4b962;
 }
