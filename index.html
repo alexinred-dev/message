@@ -4,82 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goodnight, Logann</title>
-    <style>
-        body {
-            background: url('https://source.unsplash.com/1600x900/?night-sky') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
-        .message-box {
-            border: 1px solid white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 1em 0;
-            background-color: rgba(255, 255, 255, 0.1);
-            font-size: 1.2em;
-        }
-        .message-input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 1em;
-            font-size: 1em;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .send-btn {
-            padding: 15px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            width: 100%;
-        }
-        .send-btn:hover {
-            background-color: #ff1493;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Goodnight, Logann 💕</h1>
-        <div class="message-box">
-            <p>Last message: "I love you more than the stars in the sky."</p>
-        </div>
-        <textarea class="message-input" placeholder="Write a message..."></textarea>
-        <button class="send-btn">Send</button>
+    <div id="passkey-container">
+        <h2>Enter Passkey</h2>
+        <input type="password" id="passkey" placeholder="Enter your passkey">
+        <button id="passkey-submit">Submit</button>
+        <p id="error-message"></p>
     </div>
-    <script>
-        document.querySelector('.send-btn').addEventListener('click', function() {
-            const message = document.querySelector('.message-input').value;
-            if (message) {
-                document.querySelector('.message-box p').innerText = "Last message: " + message;
-                document.querySelector('.message-input').value = ''; // Clear input field
-            }
-        });
-    </script>
+
+    <div id="main-content" class="hidden">
+        <div class="container">
+            <h1>Goodnight, Logann 💕</h1>
+            <div id="profile-pic-container">
+                <img id="profile-pic" src="images/your-profile-pictures.jpg" alt="Profile Picture">
+                <input type="file" id="upload-pic" accept="image/*">
+            </div>
+            <div class="message-box" id="message-box"></div>
+            <textarea class="message-input" id="message-input" placeholder="Write a message..."></textarea>
+            <button class="send-btn" id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
