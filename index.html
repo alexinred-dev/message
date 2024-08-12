@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goodnight, Logann</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="passkey-container">
@@ -13,20 +16,5 @@
         <button id="passkey-submit">Submit</button>
         <p id="error-message"></p>
     </div>
-
-    <div id="main-content" class="hidden">
-        <div class="container">
-            <h1>Goodnight, Logann 💕</h1>
-            <div id="profile-pic-container">
-                <img id="profile-pic" src="images/your-profile-pictures.jpg" alt="Profile Picture">
-                <input type="file" id="upload-pic" accept="image/*">
-            </div>
-            <div class="message-box" id="message-box"></div>
-            <textarea class="message-input" id="message-input" placeholder="Write a message..."></textarea>
-            <button class="send-btn" id="send-btn">Send</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
